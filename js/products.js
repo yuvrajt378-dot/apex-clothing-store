@@ -51,21 +51,21 @@ image:"images/marvel/spider-man-shirt.jpg"
 
 ];
 
-const grid = document.getElementById("product-grid");
+const grid=document.getElementById("product-grid");
 
-const searchInput = document.getElementById("searchInput");
+const search=document.getElementById("searchInput");
 
-function displayProducts(list){
+function showProducts(list){
 
 grid.innerHTML="";
 
-list.forEach(product => {
+list.forEach(product=>{
 
-const card = document.createElement("div");
+const card=document.createElement("div");
 
 card.className="product-card";
 
-card.innerHTML = `
+card.innerHTML=`
 
 <img src="${product.image}">
 
@@ -73,8 +73,8 @@ card.innerHTML = `
 
 <p>₹${product.price}</p>
 
-<button onclick='openProduct(${JSON.stringify(product)})'>
-View Product
+<button onclick='viewProduct(${JSON.stringify(product)})'>
+View
 </button>
 
 `;
@@ -85,46 +85,49 @@ grid.appendChild(card);
 
 }
 
-displayProducts(products);
+showProducts(products);
 
-function openProduct(product){
 
-localStorage.setItem("selectedProduct",JSON.stringify(product));
+function viewProduct(product){
+
+localStorage.setItem("product",JSON.stringify(product));
 
 window.location="product.html";
 
 }
 
-searchInput.addEventListener("keyup",function(){
 
-const value = this.value.toLowerCase();
+search.addEventListener("keyup",function(){
 
-const filtered = products.filter(p => p.name.toLowerCase().includes(value));
+const value=this.value.toLowerCase();
 
-displayProducts(filtered);
+const filtered=products.filter(p=>p.name.toLowerCase().includes(value));
+
+showProducts(filtered);
 
 });
 
-const links = document.querySelectorAll(".nav-links a");
+
+const links=document.querySelectorAll(".nav-links a");
 
 links.forEach(link=>{
 
-link.addEventListener("click",()=>{
+link.onclick=function(){
 
-const category = link.dataset.category;
+const category=link.dataset.category;
 
 if(category==="all"){
 
-displayProducts(products);
+showProducts(products);
 
 }else{
 
-const filtered = products.filter(p => p.category===category);
+const filtered=products.filter(p=>p.category===category);
 
-displayProducts(filtered);
+showProducts(filtered);
 
 }
 
-});
+};
 
 });

@@ -2,55 +2,41 @@
 <html>
 
 <head>
-
 <title>Product</title>
-
 <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
-<nav class="navbar">
-
 <a href="index.html">⬅ Back</a>
 
-</nav>
+<div id="product"></div>
 
-<div class="product-page">
-
-<img id="product-image">
-
-<div>
-
-<h1 id="product-name"></h1>
-
-<h2 id="product-price"></h2>
-
-<button id="addCartBtn">Add to Cart</button>
-
-</div>
-
-</div>
+<button onclick="addCart()">Add To Cart</button>
 
 <script>
 
-const product = JSON.parse(localStorage.getItem("selectedProduct"));
+const product=JSON.parse(localStorage.getItem("product"));
 
-document.getElementById("product-image").src = product.image;
+const container=document.getElementById("product");
 
-document.getElementById("product-name").innerText = product.name;
+container.innerHTML=`
 
-document.getElementById("product-price").innerText = "₹" + product.price;
+<h1>${product.name}</h1>
 
+<img src="${product.image}" width="300">
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<h2>₹${product.price}</h2>
 
-document.getElementById("addCartBtn").onclick = function(){
+`;
+
+function addCart(){
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
 cart.push(product);
 
-localStorage.setItem("cart", JSON.stringify(cart));
+localStorage.setItem("cart",JSON.stringify(cart));
 
 alert("Added to cart");
 
@@ -59,5 +45,4 @@ alert("Added to cart");
 </script>
 
 </body>
-
 </html>
