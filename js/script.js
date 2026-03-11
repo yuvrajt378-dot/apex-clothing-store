@@ -1,21 +1,35 @@
-const searchInput = document.getElementById("searchInput")
+```javascript
+// APEX STORE CART SYSTEM
 
-searchInput.addEventListener("keyup",function(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const value = searchInput.value.toLowerCase()
+function updateCartCount() {
+    const cartCount = document.getElementById("cart-count");
+    if (!cartCount) return;
 
-const products = document.querySelectorAll(".product-card")
-
-products.forEach(product=>{
-
-const name = product.innerText.toLowerCase()
-
-if(name.includes(value)){
-product.style.display="block"
-}else{
-product.style.display="none"
+    cartCount.textContent = cart.length;
 }
 
-})
+// Add product to cart
+function addToCart(productName, price) {
 
-})
+    const product = {
+        name: productName,
+        price: price
+    };
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(productName + " added to cart!");
+}
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
+});
+```
+

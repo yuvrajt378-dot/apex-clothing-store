@@ -1,50 +1,137 @@
+```html
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX Store Register</title>
 
-<title>Register</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="css/style.css">
+<style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:url("anime.jpg");
+background-size:cover;
+background-position:center;
+}
+
+.register-box{
+width:360px;
+padding:40px;
+border-radius:15px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+box-shadow:0 0 25px rgba(0,0,0,0.6);
+text-align:center;
+color:white;
+}
+
+.register-box h2{
+margin-bottom:25px;
+letter-spacing:2px;
+}
+
+.input-box{
+position:relative;
+margin-bottom:18px;
+}
+
+.input-box input{
+width:100%;
+padding:12px 40px;
+border:none;
+border-radius:25px;
+background:rgba(255,255,255,0.2);
+color:white;
+outline:none;
+}
+
+.input-box i{
+position:absolute;
+left:12px;
+top:50%;
+transform:translateY(-50%);
+}
+
+.register-btn{
+width:100%;
+padding:12px;
+border:none;
+border-radius:25px;
+background:#00f7ff;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.register-btn:hover{
+box-shadow:0 0 20px #00f7ff;
+}
+
+.login-link{
+margin-top:15px;
+font-size:14px;
+}
+
+.login-link a{
+color:white;
+text-decoration:none;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="auth-container">
+<div class="register-box">
 
-<h2>Register</h2>
+<h2>Create Account</h2>
 
-<input type="email" id="regEmail" placeholder="Email">
+<form>
 
-<input type="password" id="regPassword" placeholder="Password">
+<div class="input-box">
+<i class="fa fa-user"></i>
+<input type="text" placeholder="Username" required>
+</div>
 
-<button onclick="register()">Register</button>
+<div class="input-box">
+<i class="fa fa-envelope"></i>
+<input type="email" placeholder="Email" required>
+</div>
 
-<p>Already have an account? <a href="login.html">Login</a></p>
+<div class="input-box">
+<i class="fa fa-lock"></i>
+<input type="password" placeholder="Password" required>
+</div>
+
+<div class="input-box">
+<i class="fa fa-lock"></i>
+<input type="password" placeholder="Confirm Password" required>
+</div>
+
+<button class="register-btn">Register</button>
+
+<div class="login-link">
+Already have an account? <a href="login.html">Login</a>
+</div>
+
+</form>
 
 </div>
 
-<script>
-
-function register(){
-
-const email=document.getElementById("regEmail").value;
-
-const password=document.getElementById("regPassword").value;
-
-const user={email,password};
-
-localStorage.setItem("user",JSON.stringify(user));
-
-alert("Account created");
-
-window.location="login.html";
-
-}
-
-</script>
-
 </body>
-
 </html>
+```
+
