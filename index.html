@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="icon" href="images/favicon.png">
 
 </head>
 
@@ -22,119 +22,56 @@ Free Shipping on Orders Above ₹999
 <nav class="navbar">
 
 <div class="logo">
-
 <img src="images/logo.png">
-
 </div>
 
 <div class="nav-links">
-<a href="#">MEN</a>
-<a href="#">WOMEN</a>
-<a href="#">ANIME</a>
-<a href="#">SNEAKERS</a>
+<a data-category="all">All</a>
+<a data-category="marvel">Marvel</a>
+<a data-category="dc">DC</a>
+<a data-category="anime">Anime</a>
 </div>
 
 <div class="nav-right">
 
-<input type="text" placeholder="Search">
+<input type="text" id="searchInput" placeholder="Search products">
 
-<div class="cart">
-🛒 0
-</div>
+<a href="login.html">Login</a>
+
+<a href="cart.html">🛒 Cart</a>
 
 </div>
 
 </nav>
 
 
-<!-- HERO -->
-
 <section class="banner">
 
+<img src="images/anime-banner.jpg">
+
+<div class="banner-text">
+
 <h1>Anime Streetwear</h1>
+
 <p>Unleash Your Otaku Style</p>
 
 <button>SHOP NOW</button>
 
-</section>
-
-
-<!-- FEATURED -->
-
-<section class="featured">
-
-<h2>Featured Collection</h2>
-
-<div class="featured-grid">
-
-<div class="featured-card">
-<img src="images/gojo-shirt.jpg">
-<h3>Anime T-Shirts</h3>
-</div>
-
-<div class="featured-card">
-<img src="images/naruto-hoodie.jpg">
-<h3>Anime Hoodies</h3>
-</div>
-
-<div class="featured-card">
-<img src="images/aot-jacket.jpg">
-<h3>Anime Jackets</h3>
-</div>
-
 </div>
 
 </section>
 
-
-<!-- PRODUCTS -->
 
 <section class="products">
 
-<h2>Trending Products</h2>
+<h2>All Products</h2>
 
-<div class="product-grid">
-
-<div class="product-card">
-<img src="images/gojo-shirt.jpg">
-<h3>Gojo T-Shirt</h3>
-<p>₹799</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="images/naruto-hoodie.jpg">
-<h3>Naruto Hoodie</h3>
-<p>₹999</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="images/aot-jacket.jpg">
-<h3>AOT Jacket</h3>
-<p>₹1299</p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="images/gojo-shirt.jpg">
-<h3>Jujutsu Tee</h3>
-<p>₹799</p>
-<button>Add to Cart</button>
-</div>
-
-</div>
+<div id="product-grid" class="product-grid"></div>
 
 </section>
 
 
-<footer>
-
-<p>© 2026 APEX Store</p>
-
-</footer>
-
-<script src="js/script.js"></script>
+<script src="js/products.js"></script>
 
 </body>
 

@@ -1,0 +1,43 @@
+[
+ {
+  "name": "Batman Hoodie",
+  "price": 1199,
+  "category": "DC",
+  "image": "images/dc/batman-hoodie.jpg"
+ },
+
+ {
+  "name": "Joker Jacket",
+  "price": 1399,
+  "category": "DC",
+  "image": "images/dc/joker-jacket.jpg"
+ },
+
+ {
+  "name": "Superman Shirt",
+  "price": 799,
+  "category": "DC",
+  "image": "images/dc/superman-shirt.jpg"
+ },
+
+ {
+  "name": "Naruto Hoodie",
+  "price": 999,
+  "category": "Anime",
+  "image": "images/anime/naruto-hoodie.jpg"
+ },
+
+ {
+  "name": "Gojo Shirt",
+  "price": 899,
+  "category": "Anime",
+  "image": "images/anime/gojo-shirt.jpg"
+ },
+
+ {
+  "name": "Spiderman Shirt",
+  "price": 799,
+  "category": "Marvel",
+  "image": "images/marvel/spiderman-shirt.jpg"
+ }
+]
