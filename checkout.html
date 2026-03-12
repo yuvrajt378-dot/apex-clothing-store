@@ -1,102 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checkout</title>
+<title>Checkout | APEX Store</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#030712;
+color:white;
+overflow:hidden;
+}
+
+/* DOMAIN EXPANSION SCREEN */
+
+#domain{
+position:fixed;
+width:100%;
+height:100%;
+background:#020617;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+/* ENERGY CIRCLE */
+
+.portal{
+width:250px;
+height:250px;
+border-radius:50%;
+background:radial-gradient(circle,#7c3aed,#4c1d95,#000);
+box-shadow:
+0 0 40px #7c3aed,
+0 0 120px #7c3aed,
+0 0 200px #9333ea;
+
+animation:spin 6s linear infinite;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/* DOMAIN TEXT */
+
+.domain-text{
+margin-top:40px;
+font-size:28px;
+letter-spacing:4px;
+color:#c4b5fd;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:0.5;}
+50%{opacity:1;}
+100%{opacity:0.5;}
+}
+
+/* CHECKOUT CONTAINER */
+
+#checkout{
+display:none;
+height:100vh;
+align-items:center;
+justify-content:center;
+}
+
+/* ENERGY BACKGROUND */
+
+.energy{
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.8;
+}
+
+.energy1{
+background:#7c3aed;
+top:10%;
+left:10%;
+}
+
+.energy2{
+background:#22d3ee;
+bottom:10%;
+right:10%;
+}
+
+/* GLASS CARD */
+
+.checkout-container{
+position:relative;
+z-index:10;
+width:950px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:20px;
+padding:35px;
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:8px;
+border:none;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+padding:10px;
+background:rgba(255,255,255,0.08);
+border-radius:8px;
+}
+
+.item-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.cart-item img{
+width:45px;
+border-radius:6px;
+}
+
+.total{
+margin-top:15px;
+font-size:20px;
+font-weight:600;
+}
+
+.pay-btn{
+margin-top:20px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:linear-gradient(45deg,#7c3aed,#22d3ee);
+font-weight:600;
+cursor:pointer;
+color:white;
+}
+
+.pay-btn:hover{
+transform:translateY(-3px);
+}
+
+/* BACK BUTTON */
+
+.back{
+position:absolute;
+top:20px;
+left:20px;
+color:white;
+text-decoration:none;
+}
+
+@media(max-width:800px){
+
+.checkout-container{
+grid-template-columns:1fr;
+width:90%;
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1 style="text-align:center;margin-top:20px;">Checkout</h1>
+<!-- DOMAIN EXPANSION ANIMATION -->
+
+<div id="domain">
+
+<div class="portal"></div>
+
+<div class="domain-text">
+DOMAIN EXPANSION
+</div>
+
+</div>
+
+<!-- CHECKOUT PAGE -->
+
+<div id="checkout">
+
+<div class="energy energy1"></div>
+<div class="energy energy2"></div>
+
+<a href="cart.html" class="back">← Back to Cart</a>
 
 <div class="checkout-container">
 
-<div class="checkout-form">
+<div class="card">
 
 <h2>Shipping Details</h2>
 
-<input type="text" placeholder="Full Name" required>
-
-<input type="email" placeholder="Email Address" required>
-
-<input type="text" placeholder="Phone Number" required>
-
-<input type="text" placeholder="Address" required>
-
-<input type="text" placeholder="City" required>
-
-<input type="text" placeholder="Postal Code" required>
-
-<select>
-<option>Cash on Delivery</option>
-<option>UPI</option>
-<option>Credit Card</option>
-</select>
-
-<button onclick="placeOrder()" class="place-order-btn">
-Place Order
-</button>
+<input placeholder="Full Name">
+<input placeholder="Email">
+<input placeholder="Phone Number">
+<input placeholder="Address">
+<input placeholder="City">
+<input placeholder="Postal Code">
 
 </div>
 
-<div class="order-summary">
+<div class="card">
 
 <h2>Order Summary</h2>
 
-<div id="order-items"></div>
+<div id="cart-items"></div>
 
-<h3 id="order-total"></h3>
+<div class="total">
+Total: ₹<span id="total">0</span>
+</div>
+
+<button class="pay-btn" onclick="placeOrder()">Place Order</button>
 
 </div>
 
 </div>
 
+</div>
 
 <script>
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+/* DOMAIN EXPANSION TRANSITION */
 
-const items = document.getElementById("order-items");
+setTimeout(()=>{
 
-const totalElement = document.getElementById("order-total");
+document.getElementById("domain").style.display="none";
+document.getElementById("checkout").style.display="flex";
 
-let total = 0;
+},3500);
 
-cart.forEach(item => {
+/* CART SYSTEM */
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cart-items");
+const totalEl = document.getElementById("total");
+
+function renderCart(){
+
+let total=0;
+
+cart.forEach(item=>{
 
 total += item.price;
 
-items.innerHTML += `
+const div=document.createElement("div");
 
-<p>${item.name} — ₹${item.price}</p>
+div.className="cart-item";
 
+div.innerHTML=`
+<div class="item-left">
+<img src="${item.image}">
+<span>${item.name}</span>
+</div>
+<span>₹${item.price}</span>
 `;
+
+container.appendChild(div);
 
 });
 
-totalElement.textContent = "Total ₹" + total;
+totalEl.textContent = total;
 
+}
 
 function placeOrder(){
 
-alert("Order placed successfully 🎉");
+alert("⚡ Order placed successfully!");
 
 localStorage.removeItem("cart");
 
-window.location = "order-success.html";
+window.location="index.html";
 
 }
+
+renderCart();
 
 </script>
 
 </body>
-
 </html>

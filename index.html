@@ -4,12 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>APEX Store</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="images/favicon.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -17,110 +16,59 @@
 
 <body>
 
-<div class="top-bar">
-Free Shipping on Orders Above ₹999
-</div>
+<header class="navbar">
 
-<nav class="navbar">
+<div class="logo">APEX</div>
 
-<div class="logo">
-<img src="images/logo.png" alt="APEX Logo">
-</div>
-
-<div class="nav-links">
+<nav class="nav-links">
 <a data-category="all">All</a>
+<a data-category="anime">Anime</a>
 <a data-category="marvel">Marvel</a>
 <a data-category="dc">DC</a>
-<a data-category="anime">Anime</a>
+</nav>
+
 <div class="nav-right">
 
-<input type="text" id="searchInput" placeholder="Search products...">
+<input type="text" id="searchInput" placeholder="Search products">
 
 <button onclick="toggleDarkMode()" class="dark-btn">🌙</button>
 
-<a href="login.html">Login</a>
+<a href="login.html" class="login-btn">Login</a>
 
-<a href="cart.html" class="cart-link">
+<a href="cart.html">
 Cart (<span id="cart-count">0</span>)
 </a>
 
 </div>
 
-</nav>
+</header>
 
-<section class="banner">
 
-<img src="images/anime-banner.jpg" alt="Anime Banner">
+<section class="hero">
 
-<div class="banner-text">
+<div class="hero-content">
 <h1>Anime Streetwear</h1>
-<p>Unleash Your Otaku Style</p>
-<button onclick="window.location='#product-grid'">SHOP NOW</button>
+<p>Premium clothing inspired by your favorite characters</p>
+<button onclick="window.location='#products'">Shop Now</button>
 </div>
 
 </section>
 
-<section class="collections">
 
-<h2>Featured Collections</h2>
-
-<div class="collection-grid">
-
-<div class="collection-card">
-<img src="images/anime/naruto-hoodie.jpg">
-<h3>Anime Collection</h3>
-</div>
-
-<div class="collection-card">
-<img src="images/marvel/spider-man-shirt.jpg">
-<h3>Marvel Collection</h3>
-</div>
-
-<div class="collection-card">
-<img src="images/dc/batman-hoodie.jpg">
-<h3>DC Collection</h3>
-</div>
-
-</div>
-
-<section class="products">
+<section id="products" class="products">
 
 <h2>All Products</h2>
 
-<div class="shop-layout">
-
-<div class="filters">
-
-<h3>Filter</h3>
-
-<label>Max Price</label>
-<input type="range" id="priceFilter" min="500" max="1500" step="100" value="1500">
-
-<label>Minimum Rating</label>
-<select id="ratingFilter">
-<option value="0">All</option>
-<option value="4">4★ & up</option>
-<option value="4.5">4.5★ & up</option>
-</select>
-
-<button onclick="applyFilters()">Apply Filters</button>
-
-</div>
-
 <div id="product-grid" class="product-grid"></div>
-
-</div>
 
 </section>
 
-
-<!-- Quick View Modal -->
 
 <div id="quick-view" class="quick-view">
 
 <div class="quick-view-content">
 
-<span id="close-quick-view">&times;</span>
+<span id="close-quick-view">×</span>
 
 <img id="quick-img">
 
@@ -128,7 +76,8 @@ Cart (<span id="cart-count">0</span>)
 
 <p id="quick-price"></p>
 
-<button id="quick-view-btn">View Full Product</button>
+<button id="quick-add-cart">Add To Cart</button>
+<button id="quick-view-btn">View Product</button>
 
 </div>
 
@@ -137,42 +86,9 @@ Cart (<span id="cart-count">0</span>)
 
 <footer class="footer">
 
-<div class="footer-grid">
-
-<div class="footer-col">
-<h3>APEX Store</h3>
-<p>Premium anime and superhero streetwear for fans who want style and comfort.</p>
-</div>
-
-<div class="footer-col">
-<h4>Shop</h4>
-<a href="#">Anime</a>
-<a href="#">Marvel</a>
-<a href="#">DC</a>
-</div>
-
-<div class="footer-col">
-<h4>Support</h4>
-<a href="#">Contact</a>
-<a href="#">Shipping</a>
-<a href="#">Returns</a>
-</div>
-
-<div class="footer-col">
-<h4>Follow Us</h4>
-<a href="#">Instagram</a>
-<a href="#">Twitter</a>
-<a href="#">YouTube</a>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-© 2026 APEX Store. All rights reserved.
-</div>
+<p>© 2026 APEX Store</p>
 
 </footer>
-
 
 <script src="js/products.js"></script>
 

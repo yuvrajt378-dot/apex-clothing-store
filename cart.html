@@ -1,122 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<title>Your Cart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart | APEX Store</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#111827;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+}
+
+.cart-container{
+width:900px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:20px;
+}
+
+.cart-item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px;
+padding:15px;
+background:rgba(255,255,255,0.08);
+border-radius:10px;
+}
+
+.cart-item img{
+width:70px;
+border-radius:8px;
+}
+
+.item-info{
+flex:1;
+margin-left:15px;
+}
+
+button{
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.remove-btn{
+background:#ef4444;
+color:white;
+}
+
+.checkout{
+margin-top:20px;
+background:#6366f1;
+color:white;
+padding:14px 20px;
+}
+
+.total{
+margin-top:20px;
+font-size:22px;
+}
+
+.back{
+position:absolute;
+top:20px;
+left:20px;
+color:white;
+text-decoration:none;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1 style="text-align:center;margin-top:20px;">Your Cart</h1>
+<a href="index.html" class="back">← Back to Store</a>
 
-<div id="cart" class="cart-container"></div>
+<div class="cart-container">
 
-<div class="cart-summary">
+<h1>Your Cart</h1>
 
-<h2 id="total"></h2>
+<div id="cart-items"></div>
 
-<a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
-
+<div class="total">
+Total: ₹<span id="total">0</span>
 </div>
 
+<button class="checkout" onclick="goCheckout()">Checkout</button>
+
+</div>
 
 <script>
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const container = document.getElementById("cart");
-const totalElement = document.getElementById("total");
-
+const container = document.getElementById("cart-items");
+const totalEl = document.getElementById("total");
 
 function renderCart(){
 
-container.innerHTML = "";
-
+container.innerHTML="";
 let total = 0;
 
 cart.forEach((item,index)=>{
 
 total += item.price;
 
-container.innerHTML += `
+const div = document.createElement("div");
+div.className="cart-item";
 
-<div class="cart-item">
-
+div.innerHTML = `
 <img src="${item.image}">
-
-<div class="cart-info">
-
+<div class="item-info">
 <h3>${item.name}</h3>
-
 <p>₹${item.price}</p>
-
-<div class="qty-controls">
-
-<button onclick="decreaseQty(${index})">-</button>
-
-<span>1</span>
-
-<button onclick="increaseQty(${index})">+</button>
-
 </div>
-
-<button class="remove-btn" onclick="removeItem(${index})">
-Remove
-</button>
-
-</div>
-
-</div>
-
+<button class="remove-btn" onclick="removeItem(${index})">Remove</button>
 `;
+
+container.appendChild(div);
 
 });
 
-totalElement.textContent = "Total ₹" + total;
-
-localStorage.setItem("cart",JSON.stringify(cart));
+totalEl.textContent = total;
 
 }
-
 
 function removeItem(index){
 
 cart.splice(index,1);
-
+localStorage.setItem("cart",JSON.stringify(cart));
 renderCart();
 
 }
 
+function goCheckout(){
 
-function increaseQty(index){
-
-cart.push(cart[index]);
-
-renderCart();
+window.location.href = "checkout.html";
 
 }
-
-
-function decreaseQty(index){
-
-cart.splice(index,1);
-
-renderCart();
-
-}
-
 
 renderCart();
 
 </script>
 
 </body>
-
 </html>
