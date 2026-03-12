@@ -1,33 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
+
 <title>Checkout</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-<h1>Checkout</h1>
+<h1 style="text-align:center;margin-top:20px;">Checkout</h1>
 
-<input placeholder="Full Name"><br><br>
+<div class="checkout-container">
 
-<input placeholder="Address"><br><br>
+<div class="checkout-form">
 
-<input placeholder="Phone"><br><br>
+<h2>Shipping Details</h2>
 
-<button onclick="order()">Place Order</button>
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<input type="text" placeholder="Phone Number" required>
+
+<input type="text" placeholder="Address" required>
+
+<input type="text" placeholder="City" required>
+
+<input type="text" placeholder="Postal Code" required>
+
+<select>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Credit Card</option>
+</select>
+
+<button onclick="placeOrder()" class="place-order-btn">
+Place Order
+</button>
+
+</div>
+
+<div class="order-summary">
+
+<h2>Order Summary</h2>
+
+<div id="order-items"></div>
+
+<h3 id="order-total"></h3>
+
+</div>
+
+</div>
+
 
 <script>
 
-function order(){
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-alert("Order placed successfully");
+const items = document.getElementById("order-items");
+
+const totalElement = document.getElementById("order-total");
+
+let total = 0;
+
+cart.forEach(item => {
+
+total += item.price;
+
+items.innerHTML += `
+
+<p>${item.name} — ₹${item.price}</p>
+
+`;
+
+});
+
+totalElement.textContent = "Total ₹" + total;
+
+
+function placeOrder(){
+
+alert("Order placed successfully 🎉");
 
 localStorage.removeItem("cart");
+
+window.location = "order-success.html";
 
 }
 
 </script>
 
 </body>
+
 </html>

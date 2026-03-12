@@ -1,44 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
 <title>Product</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-<a href="index.html">⬅ Back</a>
+<a href="index.html" class="back-btn">⬅ Back to Store</a>
 
-<div id="product"></div>
+<div class="product-page">
 
-<button onclick="addCart()">Add To Cart</button>
+<div class="product-image-box">
+
+<img id="product-img">
+
+</div>
+
+<div class="product-details">
+
+<h1 id="product-name"></h1>
+
+<div id="product-rating" class="rating"></div>
+
+<h2 id="product-price"></h2>
+
+<p class="product-desc">
+Premium quality anime streetwear from APEX Store.
+Comfortable fabric, stylish design, and perfect for everyday wear.
+</p>
+
+<button onclick="addCart()" class="cart-btn">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
 
 <script>
 
-const product=JSON.parse(localStorage.getItem("product"));
+const product = JSON.parse(localStorage.getItem("product"));
 
-const container=document.getElementById("product");
+document.getElementById("product-img").src = product.image;
+document.getElementById("product-name").textContent = product.name;
+document.getElementById("product-price").textContent = "₹" + product.price;
 
-container.innerHTML=`
+function renderStars(rating){
 
-<h1>${product.name}</h1>
+let stars="";
 
-<img src="${product.image}" width="300">
+for(let i=1;i<=5;i++){
+stars += i<=Math.round(rating) ? "⭐" : "☆";
+}
 
-<h2>₹${product.price}</h2>
+return stars;
 
-`;
+}
+
+document.getElementById("product-rating").innerHTML =
+renderStars(product.rating) + " (" + product.rating + ")";
+
 
 function addCart(){
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 cart.push(product);
 
 localStorage.setItem("cart",JSON.stringify(cart));
 
-alert("Added to cart");
+alert("Added to cart 🛒");
 
 }
 

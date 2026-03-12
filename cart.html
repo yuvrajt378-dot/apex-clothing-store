@@ -1,46 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>Cart</title>
+
+<meta charset="UTF-8">
+<title>Your Cart</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-<h1>Your Cart</h1>
+<h1 style="text-align:center;margin-top:20px;">Your Cart</h1>
 
-<div id="cart"></div>
+<div id="cart" class="cart-container"></div>
 
-<a href="checkout.html">Checkout</a>
+<div class="cart-summary">
+
+<h2 id="total"></h2>
+
+<a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+
+</div>
+
 
 <script>
 
-const cart=JSON.parse(localStorage.getItem("cart"))||[];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const container=document.getElementById("cart");
+const container = document.getElementById("cart");
+const totalElement = document.getElementById("total");
 
-let total=0;
 
-cart.forEach(item=>{
+function renderCart(){
 
-total+=item.price;
+container.innerHTML = "";
 
-container.innerHTML+=`
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+total += item.price;
+
+container.innerHTML += `
+
+<div class="cart-item">
+
+<img src="${item.image}">
+
+<div class="cart-info">
 
 <h3>${item.name}</h3>
 
 <p>₹${item.price}</p>
 
-<hr>
+<div class="qty-controls">
+
+<button onclick="decreaseQty(${index})">-</button>
+
+<span>1</span>
+
+<button onclick="increaseQty(${index})">+</button>
+
+</div>
+
+<button class="remove-btn" onclick="removeItem(${index})">
+Remove
+</button>
+
+</div>
+
+</div>
 
 `;
 
 });
 
-container.innerHTML+=`<h2>Total ₹${total}</h2>`;
+totalElement.textContent = "Total ₹" + total;
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+}
+
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+renderCart();
+
+}
+
+
+function increaseQty(index){
+
+cart.push(cart[index]);
+
+renderCart();
+
+}
+
+
+function decreaseQty(index){
+
+cart.splice(index,1);
+
+renderCart();
+
+}
+
+
+renderCart();
 
 </script>
 
 </body>
+
 </html>
